@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Add Teacher</title>
+  <% include ../partials/head %>
+  <style>
+    .tform {
+      margin: 0 auto;
+      width: 580px;
+    }
+    .btn {
+      margin-left: 200px
+    }
+    .cen-text {
+      text-align: center
+    }
+  </style>
+</head>
+
+<body>
+  <% include ../partials/navbar %>
+
+  <div class="cen-text">
+    <h4>Edit Teacher Data</h4>
+  </div>
+
+  <div class="row tform">
+    <form action="/teachers/edit/<%= dataTeacher.id %>" class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="first_name" class="validate" placeholder="<%= dataTeacher.first_name %>" required>
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" name="last_name" class="validate" placeholder="<%= dataTeacher.last_name %>" required>
+          <label for="last_name">Last Name</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="subject_id">
+            <option value="" disabled selected>Choose Subjects</option>
+            <% subjects.forEach(data => { %>
+            <option value="<%= data.id %>"><%= data.subject_name %></option>
+            <% }); %>
+          </select>
+          <label>Subject</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" name="email" class="validate" placeholder="<%= dataTeacher.email %>" required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="input-field col s12">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Edit Teacher</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('select').formSelect();
+    });
+  </script>
+
+</body>
+
+</html>

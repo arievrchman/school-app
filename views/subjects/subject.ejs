@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Subjects</title>
+  <% include ../partials/head %>
+</head>
+
+<body>
+
+  <% include ../partials/navbar %>
+
+  <div style="text-align: center">
+    <h4>Subjects Data</h4>
+    <a class="waves-effect waves-light btn" href="/subjects/add">Add Subjects</a>
+  </div>
+
+  <table class="centered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Subject Name</th>
+        <th>Teachers</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% subjects.forEach(data => { %>
+      <tr>
+        <td>
+          <%= data.id %>
+        </td>
+        <td>
+          <%= data.subject_name %>
+        </td>
+        <td>
+          <ol>
+            <% data.Teachers.forEach(teacher => { %>
+            <li>
+              <%= teacher.first_name + ' ' + teacher.last_name %>
+            </li>
+            <% }) %>
+          </ol>
+        </td>
+        <td>
+          <a href="/subjects/edit/<%= data.id %>">edit</a> | <a href="/subjects/delete/<%= data.id %>" style="color: red"
+            onclick="return confirm('Delete this data?')">delete</a>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+  <title>Students</title>
+</head>
+
+<body>
+
+  <% include ../partials/navbar %>
+
+  <div style="text-align: center">
+    <h4>All Students Data</h4>
+    <a href="/students/add" class="waves-effect waves-light btn">Add Students Data</a>
+  </div>
+
+  <table class="centered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Actions</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <% students.forEach(data => { %>
+    <tbody>
+      <tr>
+        <td>
+          <%= data.id %>
+        </td>
+        <td>
+          <%= data.first_name %>
+        </td>
+        <td>
+          <%= data.last_name %>
+        </td>
+        <td>
+          <%= data.email %>
+        </td>
+        <td>
+          <a href="/students/<%= data.id %>/add-subject">Add Subject</a>
+        </td>
+        <td style="margin-right: 50px">
+          <a href="/students/edit/<%= data.id %>">Edit</> | <a href="/students/delete/<%= data.id %>" onclick="return confirm('Delete this data?') ">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+    <% }); %>
+  </table>
+
+</body>
+
+</html>
